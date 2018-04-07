@@ -1,6 +1,3 @@
-"Stopping Services"
-Stop-Service -nowait -name "ApplicationX*" 
-
 #this variable is sensitive to the order of the services it contains.
 $services = @(
 "ApplicationX ABC - Common",
@@ -69,6 +66,9 @@ $date = Get-Date -format yyyyMMdd
 $runningPIDlist = @()
 $hungPIDlist = @()
 
+"Stopping Services"
+Stop-Service -nowait -name "ApplicationX*" 
+
 "Archiving Logs"
 if(test-path "D:\Logs\ABC"){
 New-Item "D:\Logs\ABC\Archive\$date" -type directory
@@ -113,7 +113,7 @@ if( $ServicePID -ne 0 ){
 }
 
 if($hungPIDlist -ne $null){
-wait-process -Id $hungPIDlist
+wait-process -Id $hungPIDlist -Timeout 120
 write-host "Waiting on hung process('s)"
 }else{ write-host "No hung process's" }
 
