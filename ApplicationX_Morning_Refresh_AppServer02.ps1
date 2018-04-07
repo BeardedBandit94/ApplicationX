@@ -70,7 +70,7 @@ $runningPIDlist = @()
 $hungPIDlist = @()
 
 "Archiving Logs"
-if(test-path "D:\Logs\BPM"){
+if(test-path "D:\Logs\ABC"){
 New-Item "D:\Logs\ABC\Archive\$date" -type directory
 Copy-Item "D:\Logs\ABC\ApplicationX ABC *.xml" "D:\Logs\ABC\Archive\$date"
 Remove-Item "D:\Logs\ABC\ApplicationX ABC *.xml" -force
